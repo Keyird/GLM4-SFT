@@ -1,0 +1,12 @@
+### model
+model_name_or_path: /mnt/workspace/.cache/modelscope/models/ZhipuAI/glm-4-9b-chat
+# emo_glm4_lora_sft.yaml文件中的 output_dir
+adapter_name_or_path: emo-glm4/lora_sft
+template: glm4
+finetuning_type: lora
+
+### export
+export_dir: emo-glm4/glm4-9b-export
+export_size: 2
+export_device: cpu
+export_legacy_format: false

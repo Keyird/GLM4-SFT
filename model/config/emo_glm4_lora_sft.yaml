@@ -1,0 +1,42 @@
+ ### model
+model_name_or_path: /mnt/workspace/.cache/modelscope/models/ZhipuAI/glm-4-9b-chat
+
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_target: all
+
+### dataset
+# dataset 要和 data/dataset_info.json 中添加的信息保持一致
+dataset: emo_dataset
+template: glm4
+cutoff_len: 512
+max_samples: 1000
+overwrite_cache: true
+preprocessing_num_workers: 16
+
+### output
+# output_dir是模型训练过程中的checkpoint，训练日志等的保存目录
+output_dir: emo-glm4/lora_sft
+logging_steps: 2
+#save_steps: 500
+plot_loss: true
+overwrite_output_dir: true
+save_strategy: epoch
+
+### train
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 8
+learning_rate: 1.0e-4
+num_train_epochs: 2.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+fp16: true
+
+### eval
+do_eval: false
+val_size: 0.1
+per_device_eval_batch_size: 1
+eval_strategy: steps
+eval_steps: 2
